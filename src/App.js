@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/UI/Header";
+import {Route, Switch} from "react-router-dom";
+import Statistics from "./components/routes/Statistics";
+import SendRequire from "./components/routes/SendRequire";
+import Footer from "./components/UI/Footer";
+import EmergencyCall from "./components/routes/EmergencyCall";
+import WorldNews from "./components/routes/WorldNews";
+import SendForm from "./components/routes/SendForm";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(props) {
+
+    return (
+        <div>
+            <Header/>
+            <Switch>
+                <Route path={'/statistics'}>
+                    <Statistics/>
+                </Route>
+                <Route path={'/send-require'}>
+                    <SendRequire/>
+                </Route>
+
+                <Route path={'/emergency-call'}>
+                    <EmergencyCall/>
+                </Route>
+                <Route path={'/world'}>
+                    <WorldNews/>
+                </Route>
+                <Route path={'/send'}>
+                    <SendForm/>
+                </Route>
+
+                <Route>
+                    <Statistics/>
+                </Route>
+
+            </Switch>
+            <Footer/>
+        </div>
+    );
 }
 
 export default App;
