@@ -1,0 +1,85 @@
+{% load static %}
+{% load nav_tags %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'mdbootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'mdbootstrap/css/mdb.min.css' %}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="{% static 'mdbootstrap/css/style.min.css' %}" rel="stylesheet">
+
+    <title>
+        {% block title %}
+        Online Training
+        {% endblock %}
+    </title>
+</head>
+
+<body>
+
+{% show_categories user=user %}
+
+
+
+
+
+
+<div class="container mt-5 mb-5">
+    <br>
+    <div class="col-md-3 float-left">
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action active">
+                Teacher page control panel
+            </a>
+            <a href="{% url 'teachergroupadd' %}" class="list-group-item list-group-item-action">Guruh qo'shish</a>
+            <a href="{% url 'teachergrouplist' %}" class="list-group-item list-group-item-action">Guruhlar ro'yhati</a>
+
+            <a href="{% url 'teacherschedulelist' %}" class="list-group-item list-group-item-action">Dars o'tish grafigi</a>
+
+        </div>
+    </div>
+
+    <div class="col-md-9 float-right">
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags == 'error' %}
+    <div class="alert alert-danger">
+        {{message}}
+    </div>
+    {% else %}
+    <div class="alert alert-{{message.tags}}">
+        {{message}}
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% endif %}
+    </div>
+
+    {% block content %}
+
+        Content
+    {% endblock %}
+</div>
+
+
+
+
+  <script type="text/javascript" src="{% static 'mdbootstrap/js/jquery-3.4.1.min.js' %}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{% static 'mdbootstrap/js/popper.min.js' %}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{% static 'mdbootstrap/js/bootstrap.min.js' %}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{% static 'mdbootstrap/js/mdb.js' %}"></script>
+
+</body>
+</html>

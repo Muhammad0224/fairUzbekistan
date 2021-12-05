@@ -1,0 +1,27 @@
+{% extends 'basesuper.html' %}
+{% load static %}
+{% block title %}
+    School Control
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="col-md-8 float-left">
+
+
+    <h1> Admin ma'lumotlari</h1>
+    {% if userprofile %}
+    <div class="alert alert-info">
+        Avvalgi parol: {{userprofile.password}}
+    </div>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ profile_form.as_p }}
+        <button type="submit" class="btn btn-primary btn-block">Run</button>
+
+    </form>
+</div>
+{% endblock content %}

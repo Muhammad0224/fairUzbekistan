@@ -1,0 +1,68 @@
+{% extends 'baseteacher.html' %}
+{% load static %}
+{% block title %}
+    {{title}}
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="col-md-8 float-left">
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Guruh nomi</th>
+            <th scope="col">O'qituvchi</th>
+            <th scope="col">Dars jadvali</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for group in allgroups %}
+        <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>
+                <a href="{% url 'teacherviewgroup' group.pk %}" class="blue-text">
+                    {{group.name}}
+                </a>
+            </td>
+
+            <td>
+                <a class="blue-text" href="{% url 'teacherindex' %}">
+                    {{group.teacher.user.first_name}}
+                </a>
+            </td>
+
+            {% if group.schedule %}
+            <td class="">
+                <a class="btn btn-primary" href="{% url 'teacherviewschedule' group.pk %}">
+                    Darslar jadvalini ko'rish
+                </a>
+            </td>
+            {% else %}
+            <td class="">
+                <a class="btn btn-primary" href="{% url 'teacherviewschedule' group.pk %}">
+                    Darslar jadvalini ko'rish
+                </a>
+            </td>
+            {% endif %}
+
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+
+</div>
+<div class="clearfix"></div>
+<div class="col-md-3 float-left">
+    <div class="list-group">
+        <a class="btn btn-success list-group-item list-group-item-action" href="{% url 'teacherstudentadd' %}">
+            Talaba qo'shish
+        </a>
+    </div>
+</div>
+{% endblock content %}

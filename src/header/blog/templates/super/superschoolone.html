@@ -1,0 +1,75 @@
+{% extends 'basesuper.html' %}
+{% load static %}
+{% block title %}
+School Control
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="col-md-9 float-left">
+
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Info</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">Maktab nomi</th>
+            <td>{{schoolinfo.name}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Maktab address</th>
+            <td>{{schoolinfo.address}}</td>
+        </tr>
+
+        <tr>
+            <th scope="row">Telefon raqami</th>
+            <td>{{schoolinfo.phone}}</td>
+        </tr>
+
+        <tr>
+            <th scope="row">Shartnoma raqami</th>
+            <td>{{schoolinfo.contract_num}}</td>
+        </tr>
+
+        <tr>
+            <th scope="row">Holati</th>
+            {% if schoolinfo.status %}
+            <td class="green">
+                Active
+            </td>
+            {% else %}
+            <td class="red">
+                Passive
+            </td>
+            {% endif %}
+        </tr>
+
+         <tr>
+            <th scope="row">Tugash sanasi</th>
+            <td>{{schoolinfo.contract_finish|date:"Y-m-d"}}</td>
+        </tr>
+
+        <tr>
+            <th scope="row">Yaratilgan sana</th>
+            <td>{{schoolinfo.created_at|date:"Y-m-d"}}</td>
+        </tr>
+
+        <tr>
+            <th scope="row">O'zgartirilgan sana</th>
+            <td>{{schoolinfo.updated_at|date:"Y-m-d"}}</td>
+        </tr>
+
+
+        </tbody>
+    </table>
+
+    <a href="{% url 'superchangeschool' schoolinfo.pk %}" class="btn btn-success">O'zgartirish</a>
+
+</div>
+
+{% endblock content %}

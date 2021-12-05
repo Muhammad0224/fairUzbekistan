@@ -1,0 +1,21 @@
+{% extends 'basesecond.html' %}
+{% block title %}
+    Registratsiya
+{% endblock title %}
+
+
+
+
+{% block content %}
+<br>
+<div class="container mt-5">
+    <h1> Registratsiya</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary btn-block">Registratsiya</button>
+
+</form>
+</div>
+{% endblock content %}

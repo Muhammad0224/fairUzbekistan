@@ -1,0 +1,14 @@
+{% extends 'baseadmin.html' %}
+{% load static %}
+{% block title %}
+    {{title}}
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="col-md-8 float-left">
+    <h1>Super user control paneliga xush kelibsiz</h1>
+    <h4>Maktab: {{user.userprofile.school}}</h4>
+</div>
+{% endblock content %}

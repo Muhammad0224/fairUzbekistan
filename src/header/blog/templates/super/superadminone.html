@@ -1,0 +1,88 @@
+{% extends 'basesuper.html' %}
+{% load static %}
+{% block title %}
+Admin ma'lumoti
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="col-md-9 float-left">
+
+    <h3>Admin ma'lumoti</h3>
+
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Info</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">Maktab nomi</th>
+            <td>
+                <a href="{% url 'superviewschool' admininfo.school.pk %}" class="blue-text">
+                    {{admininfo.school.name}}
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">Maktab holati</th>
+
+            {% if admininfo.school.status %}
+                <td>Active</td>
+            {% else %}
+                <td class="red">Passive</td>
+            {% endif %}
+        </tr>
+
+        <tr>
+            <th scope="row">Admin passporti</th>
+            <td>
+                {{admininfo.user.username}}
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">Admin paroli</th>
+            <td>
+                {{admininfo.password}}
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">Ismi</th>
+            <td>
+                {{admininfo.user.first_name}}
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">Familiyasi</th>
+            <td>
+                {{admininfo.user.last_name}}
+            </td>
+        </tr>
+
+
+        <tr>
+            <th scope="row">Admin holati</th>
+            {% if admininfo.user.is_active %}
+            <td>
+                Active
+            </td>
+            {% else %}
+            <td class="red">
+                Passive
+            </td>
+            {% endif  %}
+        </tr>
+
+
+        </tbody>
+    </table>
+
+    <a href="{% url 'superchangeadmin' admininfo.pk %}" class="btn btn-success">O'zgartirish</a>
+
+
+</div>
+
+{% endblock content %}

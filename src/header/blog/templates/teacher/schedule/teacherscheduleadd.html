@@ -1,0 +1,96 @@
+{% extends 'baseteacher.html' %}
+{% load static %}
+{% block title %}
+    {{title}}
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="col-md-9 float-left">
+    <h3>{{title}}</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary btn-block">Run</button>
+    </form>
+
+    <table class="mt-5 table table-sm">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Info</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <th scope="row">Guruh</th>
+            <td>
+                {{group.name}}
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">O'qitvuchi</th>
+            <td>
+                {{group.teacher.user.first_name}}
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+    {% if schedulelist %}
+
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Kun</th>
+                <th scope="col">Fan nomi</th>
+                <th scope="col">Boshlanish vaqti</th>
+                <th scope="col">O'zgaritrish</th>
+                <th scope="col">O'chirish</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for schedule in schedulelist %}
+                <tr>
+                    <th class="row">
+                        {{forloop.counter}}
+                    </th>
+                    <td>{{schedule.days.name}}</td>
+                    <td>{{ schedule.name }}</td>
+                    <td>{{ schedule.begin|date:"H:i" }}</td>
+                    <td>
+                        <a class="blue-text" href="{% url 'teacherchangeschedule' schedule.pk %}">
+                            O'zgartirish
+                        </a>
+                    </td>
+                    <td>
+                        <a class="red-text" href="{% url 'teacherdelschedule' schedule.pk %}">
+                            O'chirish
+                        </a>
+                    </td>
+                </tr>
+
+                <tr>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+
+    {% else %}
+    <div class="alert alert-warning">
+        Darslar jadvali qo'shilmagan. Fan qo'shish tugmasi yordamida fanlarni qo'shing.
+    </div>
+    {% endif %}
+
+
+</div>
+
+{% endblock content %}

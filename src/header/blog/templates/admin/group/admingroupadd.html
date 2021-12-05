@@ -1,0 +1,22 @@
+{% extends 'baseadmin.html' %}
+{% load static %}
+{% block title %}
+    {{title}}
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="col-md-8 float-left">
+
+
+    <h1> Guruh ma'lumotlari</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary btn-block">Run</button>
+
+    </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,7 @@
+<ul class="list-group" style="display: block; height: 100%; overflow: scroll;">
+  <li class="list-group-item active">Talabalar ro'yhati</li>
+  {% for student in students %}
+    <li id="st{{student.pk}}" class="list-group-item  danger-color">{{forloop.counter}}. {{student.user.last_name}} {{student.user.first_name}}</li>
+  {% endfor %}
+
+</ul>

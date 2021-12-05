@@ -1,0 +1,113 @@
+<!-- Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar top-nav-collapse">
+    <div class="container">
+
+        <!-- Brand -->
+        <a class="navbar-brand" href="{% url 'home' %}" >
+            <strong>Online Training</strong>
+        </a>
+
+
+        <!-- Collapse -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <!-- Left -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Asosiy
+                    </a>
+                </li>
+
+                {% if group == "student" %}
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'studenturrentlessons' %}">
+                            Online darslar
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'studentviewschedule' %}">Haftalik jadval</a>
+                    </li>
+                {% endif %}
+
+                {% if group == "admin" and user.is_superuser == False %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'adminindex' %}" >
+                            Guruhlar nazorati
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'admincurrentlessons' %}">
+                            Bugungi darslar
+                        </a>
+                    </li>
+                {% endif %}
+
+
+                {% if group == "teacher" %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'teacherindex' %}" >
+                            Guruhlar nazorati
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'teachercurrentlessons' %}">
+                            Bugungi darslar
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% if user.is_superuser %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'superindex' %}" >SUPERUSERCONTROL</a>
+                    </li>
+
+                {% endif %}
+
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="#" >Biz haqimizda</a>-->
+<!--                </li>-->
+            </ul>
+
+            <!-- Right -->
+            <ul class="navbar-nav nav-flex-icons">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <span class="nav-link">
+                            <a href="{% url 'user_logout' %}">Welcome {{user.username}} | Logout</a>
+                        </span>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a href="{% url 'user_login' %}" class="nav-link" >
+                            Login
+                        </a>
+                    </li>
+                {% endif %}
+
+                <li class="nav-item">
+                    <a href="#"
+                       class="nav-link border border-light rounded"
+                       target="_blank">
+                        99 816 6455 <i class="fas fa-phone mr-2"></i>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+</nav>
+<!-- Navbar -->

@@ -1,0 +1,41 @@
+{% extends 'baseteacher.html' %}
+{% load static %}
+{% block title %}
+{{title}}
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="col-md-8 float-left">
+    <h3>{{title}}</h3>
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Info</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">Guruh</th>
+            <td>{{lesson.group.name}}</td>
+        </tr>
+
+        </tbody>
+    </table>
+    {% if lesson.status %}
+
+        <a class="btn btn-success" href="{% url 'lessonroomteacher' lesson.pk %}">Darsga bog'lanish</a>
+
+    {% else %}
+    <div class="alert alert-warning">
+        Ushbu dars o'tib bo'lingan
+    </div>
+    {% endif %}
+</div>
+
+
+
+
+{% endblock content %}

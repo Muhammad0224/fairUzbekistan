@@ -1,0 +1,73 @@
+{% extends 'basestudent.html' %}
+{% load static %}
+{% block title %}
+    {{title}}
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="col-md-8 float-left">
+    <h3>{{title}}</h3>
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Info</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">Maktab nomi</th>
+            <td>{{user.userprofile.school.name}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Guruh</th>
+            <td>{{user.userprofile.sinf.name}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">O'qituvchi</th>
+            <th scope="col">Boshlanish vaqti</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for subject in schedule %}
+        <tr>
+            <th scope="row">{{forloop.counter}}</th>
+
+            <td>
+                {{subject.sinf.teacher.user.first_name}}
+            </td>
+
+
+            <td class="">
+                {{subject.begin}}
+            </td>
+
+
+            <td class="">
+                <a class="btn btn-primary" href="{% url 'studentinfolesson' subject.pk  %}">
+                    Online dars
+                </a>
+            </td>
+
+
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+
+</div>
+<div class="clearfix"></div>
+
+{% endblock content %}

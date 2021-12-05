@@ -1,0 +1,126 @@
+{% extends 'basesuper.html' %}
+{% load static %}
+{% block title %}
+    {{title}}
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="col-md-8 float-left">
+
+
+    <div>
+        <h3>Holati:</h3>
+        <div class="light-font">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb primary-color">
+                    <li class="breadcrumb-item">
+                        <a class="white-text" href="{% url 'superadminlist' %}">
+                            Barchasi
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a class="white-text" href="{% url 'superadminlistst' 1 %}">
+                            Active
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item black-text">
+                        <a class="white-text" href="{% url 'superadminlistst' 0 %}">
+                            Passive
+                        </a>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+
+        {% if schools %}
+        <h3>Maktablar:</h3>
+        <div class="light-font">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb primary-color">
+                    <li class="breadcrumb-item">
+                        <a class="white-text" href="{% url 'superadminlist'%}">
+                            Barchasi
+                        </a>
+                    </li>
+                    {% for school in schools %}
+                    <li class="breadcrumb-item">
+                        <a class="white-text" href="{% url 'superadminlistsc' school.pk %}">
+                            {{school.name}}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ol>
+            </nav>
+        </div>
+        {% endif %}
+
+    </div>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Maktab nomi</th>
+                <th scope="col">Admin passporti</th>
+                <th scope="col">Admin paroli</th>
+                <th scope="col">Holati</th>
+                <th scope="col" class="red">O'chirish!</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for admin in alladmins %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td class="">
+                    {% if admin.school.status %}
+                        <a href="{% url 'superviewschool' admin.school.pk %}" class="blue-text">
+                            {{admin.school.name}}
+                        </a>
+                    {% else %}
+                        <a href="{% url 'superviewschool' admin.school.pk %}" style="color: red;">
+                            {{admin.school.name}}
+                        </a>
+                    {% endif %}
+
+                </td>
+
+                <td class="blue">
+                    <a href="{% url 'superviewadmin' admin.pk %}">
+                        {{admin.user.username}}
+                    </a>
+                </td>
+
+                <td>
+                    {{admin.password}}
+                </td>
+
+                {% if admin.user.is_active %}
+                    <td class="">
+                        Active
+                    </td>
+                {% else %}
+                    <td class="red">
+                        Passive
+                    </td>
+                {% endif %}
+
+                <td class="text-center">
+                    <a href="{% url 'superdeladmin' admin.pk %}" class="red-text">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+
+
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+</div>
+{% endblock content %}

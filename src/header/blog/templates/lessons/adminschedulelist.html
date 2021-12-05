@@ -1,0 +1,67 @@
+{% extends 'baseadmin.html' %}
+{% load static %}
+{% block title %}
+    {{title}}
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="col-md-8 float-left">
+    <h3>{{title}}</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Guruh nomi</th>
+            <th scope="col">O'qituvchi</th>
+            <th scope="col">Boshlanish vaqti</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for subject in schedule %}
+        <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>
+                <a href="{% url 'adminviewgroup' subject.sinf.pk %}" class="blue-text">
+                    {{subject.sinf.name}}
+                </a>
+            </td>
+
+            <td>
+                <a class="blue-text" href="{% url 'adminviewteacher'  subject.sinf.teacher.pk %}">
+                    {{subject.sinf.teacher.user.first_name}}
+                </a>
+            </td>
+
+
+            <td class="">
+                {{subject.begin}}
+            </td>
+
+            <td class="">
+                <a class="btn btn-primary" href="{% url 'admininfolesson' subject.pk  %}">
+                    Online dars
+                </a>
+            </td>
+
+
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+
+</div>
+<div class="clearfix"></div>
+<div class="col-md-3 float-left">
+    <div class="list-group">
+        <a class="btn btn-success list-group-item list-group-item-action" href="{% url 'adminstudentadd' %}">
+            Talaba qo'shish
+        </a>
+    </div>
+</div>
+{% endblock content %}

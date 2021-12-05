@@ -1,0 +1,80 @@
+{% extends 'baseteacher.html' %}
+{% load static %}
+{% block title %}
+{{title}}
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="col-md-9 float-left">
+
+
+
+    <h3>{{title}}</h3>
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Info</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <th scope="row">Talaba passporti</th>
+            <td>
+                {{studentinfo.user.username}}
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">Talaba paroli</th>
+            <td>
+                {{studentinfo.password}}
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">Ismi</th>
+            <td>
+                {{studentinfo.user.first_name}}
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">Familiyasi</th>
+            <td>
+                {{studentinfo.user.last_name}}
+            </td>
+        </tr>
+
+
+        <tr>
+            <th scope="row">Talaba holati</th>
+            {% if studentinfo.user.is_active %}
+            <td>
+                Active
+            </td>
+            {% else %}
+            <td class="red">
+                Passive
+            </td>
+            {% endif %}
+        </tr>
+
+
+        </tbody>
+    </table>
+
+    <a href="{% url 'teacherchangestudent' studentinfo.pk  %}" class="btn btn-success">O'zgartirish</a>
+
+
+</div>
+<div class="clearfix"></div>
+<div class="col-md-3 float-left">
+    <div class="list-group">
+        <a class="btn btn-primary list-group-item list-group-item-action" href="{% url 'teacherviewgroup' studentinfo.sinf.pk %}">
+            "{{ studentinfo.sinf.name }}"
+        </a>
+    </div>
+</div>
+
+{% endblock content %}

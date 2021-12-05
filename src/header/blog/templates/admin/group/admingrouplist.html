@@ -1,0 +1,97 @@
+{% extends 'baseadmin.html' %}
+{% load static %}
+{% block title %}
+{{title}}
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="col-md-8 float-left">
+    <div>
+
+        <h3>Holati: </h3>
+
+        <div class="light-font">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb primary-color">
+                    <li class="breadcrumb-item">
+                        <a class="white-text" href="{% url 'admingrouplist' %}">
+                            Barchasi
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a class="white-text" href="{% url 'admingrouplistst' 1 %}">
+                            Active
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item black-text">
+                        <a class="white-text" href="{% url 'admingrouplistst' 0 %}">
+                            Passive
+                        </a>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Guruh nomi</th>
+            <th scope="col">O'qituvchi</th>
+            <th scope="col">Holati</th>
+            <th scope="col" class="red">O'chirish!</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for group in allgroups %}
+        <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td class="blue">
+                <a href="{% url 'adminviewgroup' group.pk %}">
+                    {{group.name}}
+                </a>
+            </td>
+
+            <td>
+                <a class="blue-text" href="{% url 'adminviewteacher'  group.teacher.pk %}">
+                    {{group.teacher.user.first_name}}
+                </a>
+            </td>
+
+            {% if group.status %}
+            <td class="">
+                Active
+            </td>
+            {% else %}
+            <td class="red">
+                Passive
+            </td>
+            {% endif %}
+
+            <td class="text-center">
+
+            </td>
+
+
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+
+</div>
+<div class="clearfix"></div>
+<div class="col-md-3 float-left">
+    <div class="list-group">
+        <a class="btn btn-success list-group-item list-group-item-action" href="{% url 'adminstudentadd' %}">
+            Talaba qo'shish
+        </a>
+    </div>
+</div>
+{% endblock content %}

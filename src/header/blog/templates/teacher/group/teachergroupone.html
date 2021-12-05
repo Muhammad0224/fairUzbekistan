@@ -1,0 +1,136 @@
+{% extends 'baseteacher.html' %}
+{% load static %}
+{% block title %}
+{{title}}
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="col-md-9 float-left">
+
+
+    {% if user.userprofile.school == groupinfo.school %}
+    <h3>{{title}}</h3>
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Info</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <th scope="row">Guruh nomi</th>
+            <td>
+                {{groupinfo.name}}
+            </td>
+        </tr>
+
+        <tr>
+            <th scope="row">O'qituvchi</th>
+            <td>
+                    {{groupinfo.teacher}}
+            </td>
+        </tr>
+
+        <tr>
+            <th scope="row">Oxirgi o'zgartirish</th>
+            <td>
+                {{groupinfo.updated_at|date:"Y-m-d H:i"}}
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">Tugash sanasi</th>
+            <td>
+                {{groupinfo.end|date:"Y-m-d"}}
+            </td>
+        </tr>
+
+
+        <tr>
+            <th scope="row">Guruh holati</th>
+            {% if groupinfo.status %}
+            <td>
+                Active
+            </td>
+            {% else %}
+            <td class="red">
+                Passive
+            </td>
+            {% endif %}
+        </tr>
+
+
+        </tbody>
+    </table>
+
+    <a href="{% url 'teacherchangegroup' groupinfo.pk %}" class="btn btn-success">O'zgartirish</a>
+    {% else %}
+    <div class="alert alert-danger">
+        <p>Ruhsat berilmagan ma'lumotni ko'rishga harakat qilmoqdasiz. Profilingiz bloklanadi!!!</p>
+    </div>
+    {% endif %}
+
+</div>
+<div class="clearfix"></div>
+<br>
+<div class="col-md-3 float-left">
+    <div class="list-group">
+        <a class="btn btn-success list-group-item list-group-item-action" href="{% url 'teacherstudentadd' %}">
+            Talaba qo'shish
+        </a>
+    </div>
+</div>
+
+<div class="col-md-9 float-left">
+    {% if students %}
+    <h1>Talabalar ro'yhati</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Ism, Familiya</th>
+            <th scope="col">Passport raqam</th>
+            <th scope="col">Paroli</th>
+            <th scope="col" class="red">O'chirish!</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for student in students %}
+        <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td class="blue">
+                <a href="{% url 'teacherviewstudent' student.pk %}">
+                    {{student.user.last_name}}, {{student.user.first_name}}
+                </a>
+            </td>
+
+            <td>
+                {{student.user.username}}
+            </td>
+
+            <td>
+                {{student.password}}
+            </td>
+
+            <td class="text-center">
+
+            </td>
+
+
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+
+    {% else %}
+    <div class="alert alert-warning">Ushbu guruhga talaba qo'shilmagan!!!</div>
+    {% endif %}
+</div>
+{% endblock content %}

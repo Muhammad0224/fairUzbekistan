@@ -1,0 +1,100 @@
+{% extends 'baseteacher.html' %}
+{% load static %}
+{% block title %}
+{{title}}
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="col-md-9 float-left">
+    <h3>Guruh dars o'tish grafigi</h3>
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Info</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <th scope="row">Guruh</th>
+            <td>
+                <a href="{% url 'teacherviewgroup' group.pk %}" class="blue-text">
+                    {{group.name}}
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">O'qitvuchi</th>
+            <td>
+                <a href="{% url 'teacherindex' %}" class="blue-text">
+                    {{group.teacher.user.first_name}}
+                </a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{% url 'teacherscheduleadd' group.pk %}">
+        Fan qo'shish
+    </a>
+    {{schedule}}
+
+    {% if schedulelist %}
+
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Kun</th>
+                <th scope="col">Fan nomi</th>
+                <th scope="col">Boshlanish vaqti</th>
+                <th scope="col">O'zgaritrish</th>
+                <th scope="col">O'chirish</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for schedule in schedulelist %}
+                <tr>
+                    <th class="row">
+                        {{forloop.counter}}
+                    </th>
+                    <td>{{schedule.days.name}}</td>
+                    <td>{{ schedule.name }}</td>
+                    <td>{{ schedule.begin|date:"H:i" }}</td>
+                    <td>
+                        <a class="blue-text" href="{% url 'teacherchangeschedule' schedule.pk %}">
+                            O'zgartirish
+                        </a>
+                    </td>
+                    <td>
+                        <a class="red-text" href="{% url 'teacherdelschedule' schedule.pk %}">
+                            O'chirish
+                        </a>
+                    </td>
+                </tr>
+
+                <tr>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+
+    {% else %}
+    <div class="alert alert-warning">
+        Darslar jadvali qo'shilmagan. Fan qo'shish tugmasi yordamida fanlarni qo'shing.
+    </div>
+    {% endif %}
+
+
+</div>
+
+{% endblock content %}

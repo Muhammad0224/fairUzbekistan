@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Murtazayev",
+    "userName": "M_Murtazayev",
+    "chatId": "254632678",
+    "id": 254632678,
+    "stage": 7,
+    "applications": [
+      {
+        "region": "Toshkent shahr",
+        "district": "Toshkent shahr"
+      },
+      {
+        "region": "Toshkent shahar",
+        "district": "Yunusobod tumani"
+      },
+      {
+        "region": "Toshkent viloyati",
+        "district": "Bekobod tumani",
+        "organization": "Test",
+        "more": "bla-bla",
+        "email": "aokndksand",
+        "telephoneNumber": "aklsndlaksnd"
+      },
+      {
+        "region": "Toshkent shahar",
+        "district": "Sergeli tumani",
+        "organization": "naodba",
+        "more": "asdlkafnas",
+        "email": "aknfanfa",
+        "telephoneNumber": "aksndfaksndfk"
+      }
+    ]
+  },
+  {
+    "name": "∞",
+    "userName": "shbobokulov",
+    "chatId": "883287763",
+    "id": 883287763,
+    "stage": 7,
+    "applications": [
+      {
+        "region": "Toshkent shahar",
+        "district": "Yunusobod tumani",
+        "organization": "TEST TASHKILOT",
+        "more": "NIMADIR BO\u0027LDI",
+        "email": "TEST@GMAIL.COM",
+        "telephoneNumber": "8GFAS9G"
+      },
+      {
+        "region": "Toshkent shahar",
+        "district": "Yunusobod tumani",
+        "organization": "TEST Tashkilot",
+        "more": "Batafsil",
+        "email": "test@gmail,com\\",
+        "telephoneNumber": "99893386024"
+      },
+      {
+        "region": "Toshkent shahar",
+        "district": "Yunusobod tumani",
+        "organization": "TEST TASHKILOTI",
+        "more": "test",
+        "email": "TEST@GMAIL.COM",
+        "telephoneNumber": "998931465"
+      }
+    ]
+  }
+]

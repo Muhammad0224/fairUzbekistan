@@ -1,0 +1,65 @@
+{% load static %}
+{% load nav_tags %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'mdbootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'mdbootstrap/css/mdb.min.css' %}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="{% static 'mdbootstrap/css/style.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/stream.css' %}" rel="stylesheet">
+
+    <link href="{% static 'js/stremfiles/getHTMLMediaElement.css' %}" rel="stylesheet">
+
+
+    <script src="{% static 'js/stremfiles/menu.js' %}"></script>
+
+
+
+
+
+
+    <title>
+        {% block title %}
+        Online Training
+        {% endblock %}
+    </title>
+</head>
+
+<body>
+
+{% show_categories user=user %}
+
+
+<div class="mt-5 mb-5">
+    <br>
+
+
+    {% block content %}
+
+    Content
+    {% endblock %}
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<!--<script type="text/javascript" src="{% static 'mdbootstrap/js/jquery-3.4.1.min.js' %}"></script>-->
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{% static 'mdbootstrap/js/popper.min.js' %}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{% static 'mdbootstrap/js/bootstrap.min.js' %}"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{% static 'mdbootstrap/js/mdb.js' %}"></script>
+<!--<script type="text/javascript" src="{% static 'js/stream.js' %}"></script>-->
+
+<script type="text/javascript" src="{% static 'js/ajax.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% extends 'basesuper.html' %}
+{% load static %}
+{% block title %}
+School Control
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="col-md-9 float-left">
+    <div>
+        <h3>Holati:</h3>
+        <div class="light-font">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb primary-color">
+                <li class="breadcrumb-item">
+                    <a class="white-text" href="{% url 'superschoollist' %}">
+                        Barchasi
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a class="white-text" href="{% url 'superschoollistst' 1 %}">
+                        Active
+                    </a>
+                </li>
+                <li class="breadcrumb-item black-text">
+                    <a class="white-text" href="{% url 'superschoollistst' 0 %}">
+                        Passive
+                    </a>
+                </li>
+            </ol>
+        </nav>
+        </div>
+
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Maktab nomi</th>
+                <th scope="col">Holati</th>
+                <th scope="col">Shartnoma №</th>
+                <th scope="col">Tugash muddati</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for school in allschools %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td class="blue"><a href="{% url 'superviewschool' school.pk %}"> {{school.name}}</a></td>
+                {% if school.status %}
+                    <td>{{school.status}}</td>
+                {% else %}
+                    <td class="red">{{school.status}}</td>
+                {% endif %}
+                <td>{{school.contract_num}}</td>
+                <td>{{school.contract_finish}}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+</div>
+{% endblock content %}

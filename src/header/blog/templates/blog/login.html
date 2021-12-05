@@ -1,0 +1,24 @@
+{% extends 'basesecond.html' %}
+{% block title %}
+    Sign IN
+{% endblock title %}
+
+
+
+
+{% block content %}
+<br>
+<div class="container mt-5">
+    <div class="alert alert-info col-md-8 m-auto">
+        Tizimdan foydalanish uchun login va parolingizni kiriting
+    </div>
+    <h1 class="text-center"> Tizimga kirish</h1>
+
+<form method="post" class="col-md-8 m-auto">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary btn-block">Kirish</button>
+
+</form>
+</div>
+{% endblock content %}

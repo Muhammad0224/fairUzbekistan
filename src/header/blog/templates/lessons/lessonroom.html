@@ -1,0 +1,146 @@
+{% extends 'basestream.html' %}
+{% load static %}
+{% block title %}
+{{title}}
+{% endblock title %}
+
+
+{% block content %}
+{% csrf_token %}
+<button id="lessoncheck" class="displaynone" value="{{lesson.pk}}">asdf</button>
+<!--<button id="room-id" class="displaynone" value="{{lesson.pk}}">asdf</button>-->
+<div class="col-md-2 float-left">
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action active text-center">
+            Control
+        </a>
+
+        <a href="#" id="chatid" class="list-group-item list-group-item-action blue-text text-center">
+            <h1>
+                <i class="fab fa-facebook-messenger"></i>
+            </h1>
+        </a>
+
+        <a href="#" id="usersid" class="list-group-item list-group-item-action text-center">
+            <h1>
+                <i class="fas fa-users"></i>
+            </h1>
+        </a>
+
+        {% if group == "teacher" %}
+            {% if user.userprofile == lesson.start %}
+                <button href="#" class="list-group-item list-group-item-action text-center green-text" id="open-room">
+                    <h1>
+                        <i class="fas fa-video"></i>
+                    </h1>
+                </button>
+
+                <button href="" id="finishlesson" class="list-group-item list-group-item-action text-center red-text">
+                    <h1>
+                        <i class="fas fa-video-slash"></i>
+                    </h1>
+                </button>
+
+                <button href="#" class="list-group-item list-group-item-action text-center green-text displaynone"
+                        id="join-room">
+                    <h1>
+                        <i class="fas fa-video"></i>
+                    </h1>
+                </button>
+            {% else %}
+                <button href="#" class="list-group-item list-group-item-action text-center green-text displaynone"
+                        id="open-room">
+                    <h1>
+                        <i class="fas fa-video"></i>
+                    </h1>
+                </button>
+
+                <button href="#" class="list-group-item list-group-item-action text-center green-text"
+                        id="join-room">
+                    <h1>
+                        <i class="fas fa-video"></i>
+                    </h1>
+                </button>
+            {% endif %}
+
+        {% endif %}
+        {% if group == 'admin' %}
+
+            {% if user.userprofile == lesson.start %}
+                <button href="#" class="list-group-item list-group-item-action text-center green-text" id="open-room">
+                    <h1>
+                        <i class="fas fa-video"></i>
+                    </h1>
+                </button>
+
+                <button href="" id="finishlesson" class="list-group-item list-group-item-action text-center red-text">
+                    <h1>
+                        <i class="fas fa-video-slash"></i>
+                    </h1>
+                </button>
+
+                <button href="#" class="list-group-item list-group-item-action text-center green-text displaynone"
+                        id="join-room">
+                    <h1>
+                        <i class="fas fa-video"></i>
+                    </h1>
+                </button>
+            {% else %}
+                <button href="#" class="list-group-item list-group-item-action text-center green-text displaynone"
+                        id="open-room">
+                    <h1>
+                        <i class="fas fa-video"></i>
+                    </h1>
+                </button>
+
+                <button href="#" class="list-group-item list-group-item-action text-center green-text"
+                        id="join-room">
+                    <h1>
+                        <i class="fas fa-video"></i>
+                    </h1>
+                </button>
+            {% endif %}
+        {% endif %}
+
+        {% if group == 'student' %}
+        <button href="#" class="list-group-item list-group-item-action text-center green-text displaynone"
+                id="open-room">
+            <h1>
+                <i class="fas fa-video"></i>
+            </h1>
+        </button>
+
+        <button href="#" class="list-group-item list-group-item-action text-center green-text"
+                id="join-room">
+            <h1>
+                <i class="fas fa-video"></i>
+            </h1>
+        </button>
+        {% endif %}
+    </div>
+</div>
+
+<div class="col-md-7 float-left card container-fluid h-100" style="height: 100%;">
+    <h3>{{title}}</h3>
+
+    <input type="text" id="room-id" value="{{lesson.pk}}" class="displaynone">
+
+
+    {% include 'lessons/parts/test.html' %}
+
+
+</div>
+<div class="col-md-3 float-left  display-block">
+    <div class="message-part p-2" id="users-part" style="height:500px;">
+        {% include 'lessons/parts/users.html' %}
+
+    </div>
+    <div class="message-part p-2 displaynone" id="message-part" style="height:500px;">
+        {% include 'lessons/parts/chat.html' %}
+
+    </div>
+
+</div>
+
+
+{% endblock content %}

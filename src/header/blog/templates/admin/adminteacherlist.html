@@ -1,0 +1,92 @@
+{% extends 'baseadmin.html' %}
+{% load static %}
+{% block title %}
+{{title}}
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="col-md-8 float-left">
+
+    <div>
+        <h3>Holati:</h3>
+        <div class="light-font">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb primary-color">
+                    <li class="breadcrumb-item">
+                        <a class="white-text" href="{% url 'adminteacherlist' %}">
+                            Barchasi
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a class="white-text" href="{% url 'adminteacherlistst' 1 %}">
+                            Active
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item black-text">
+                        <a class="white-text" href="{% url 'adminteacherlistst' 0 %}">
+                            Passive
+                        </a>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Familya, Ism</th>
+            <th scope="col">O'qituvchi passporti</th>
+            <th scope="col">O'qituvchi paroli</th>
+            <th scope="col">Holati</th>
+            <th scope="col" class="red">O'chirish!</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for teacher in allteachers %}
+        <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td class="">
+                {{teacher.user.last_name}}, {{teacher.user.first_name}}
+            </td>
+
+            <td class="blue">
+                <a href="{% url 'adminviewteacher' teacher.pk %}">
+                    {{teacher.user.username}}
+                </a>
+            </td>
+
+            <td>
+                {{teacher.password}}
+            </td>
+
+            {% if teacher.user.is_active %}
+            <td class="">
+                Active
+            </td>
+            {% else %}
+            <td class="red">
+                Passive
+            </td>
+            {% endif %}
+
+            <td class="text-center">
+                <a href="{% url 'admindelteacher' teacher.pk %}" class="red-text">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </td>
+
+
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+</div>
+{% endblock content %}
